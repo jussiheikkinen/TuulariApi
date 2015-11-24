@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="tuulariEntities-Web.config Connection String" description="tuulariEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.TuulariModel.csdl|res://*/Models.TuulariModel.ssdl|res://*/Models.TuulariModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SQL5018.Smarterasp.net;persist security info=True;user id=DB_9E36C9_tuulari_admin;password=tuulipuku;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\H4214\\TuulariApi\\TuulariApi\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='tuulariEntities']/@connectionString" />
+  </parameter>
+</parameters>
