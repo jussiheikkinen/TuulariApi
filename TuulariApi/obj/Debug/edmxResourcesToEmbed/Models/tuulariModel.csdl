@@ -33,6 +33,7 @@
     <NavigationProperty Name="Announcement" Relationship="Self.FK_Attendance_Announcement" FromRole="Attendance" ToRole="Announcement" />
     <NavigationProperty Name="Attendance1" Relationship="Self.FK_Attendance_User" FromRole="Attendance" ToRole="Attendance1" />
     <NavigationProperty Name="Attendance2" Relationship="Self.FK_Attendance_User" FromRole="Attendance1" ToRole="Attendance" />
+    <NavigationProperty Name="User" Relationship="tuulariModel.FK_Attendance_User1" FromRole="Attendance" ToRole="User" />
   </EntityType>
   <EntityType Name="Comment">
     <Key>
@@ -82,6 +83,8 @@
     <NavigationProperty Name="Events" Relationship="Self.FK_Event_User" FromRole="User" ToRole="Event" />
     <NavigationProperty Name="UserDatas" Relationship="Self.FK_UserData_User" FromRole="User" ToRole="UserData" />
     <NavigationProperty Name="Announcements" Relationship="tuulariModel.FK_Announcement_User1" FromRole="User" ToRole="Announcement" />
+    <NavigationProperty Name="Attendances" Relationship="tuulariModel.FK_Attendance_User1" FromRole="User" ToRole="Attendance" />
+    <NavigationProperty Name="AuthTokens" Relationship="tuulariModel.PK_AuthToken_User" FromRole="User" ToRole="AuthToken" />
   </EntityType>
   <EntityType Name="UserData">
     <Key>
@@ -259,6 +262,15 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Announcement" EntitySet="Announcements" />
     </AssociationSet>
+    <EntitySet Name="AuthTokens" EntityType="tuulariModel.AuthToken" />
+    <AssociationSet Name="FK_Attendance_User1" Association="tuulariModel.FK_Attendance_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Attendance" EntitySet="Attendances" />
+    </AssociationSet>
+    <AssociationSet Name="PK_AuthToken_User" Association="tuulariModel.PK_AuthToken_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="AuthToken" EntitySet="AuthTokens" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_Announcement_User1">
     <End Type="tuulariModel.User" Role="User" Multiplicity="1">
@@ -270,6 +282,44 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Announcement">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AuthToken">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="GenerationTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Token" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="tuulariModel.PK_AuthToken_User" FromRole="AuthToken" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Attendance_User1">
+    <End Type="tuulariModel.User" Role="User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="tuulariModel.Attendance" Role="Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PK_AuthToken_User">
+    <End Type="tuulariModel.User" Role="User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="tuulariModel.AuthToken" Role="AuthToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AuthToken">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>

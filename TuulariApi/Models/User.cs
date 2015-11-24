@@ -21,6 +21,8 @@ namespace TuulariApi.Models
             this.Events = new HashSet<Event>();
             this.UserDatas = new HashSet<UserData>();
             this.Announcements = new HashSet<Announcement>();
+            this.Attendances = new HashSet<Attendance>();
+            this.AuthTokens = new HashSet<AuthToken>();
         }
     
         public int Id { get; set; }
@@ -36,5 +38,9 @@ namespace TuulariApi.Models
         public virtual ICollection<UserData> UserDatas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Announcement> Announcements { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Attendance> Attendances { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AuthToken> AuthTokens { get; set; }
     }
 }

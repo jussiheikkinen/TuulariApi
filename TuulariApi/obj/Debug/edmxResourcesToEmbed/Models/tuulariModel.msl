@@ -87,5 +87,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AuthTokens">
+      <EntityTypeMapping TypeName="tuulariModel.AuthToken">
+        <MappingFragment StoreEntitySet="AuthToken">
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="GenerationTime" ColumnName="GenerationTime" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

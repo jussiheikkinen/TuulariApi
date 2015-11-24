@@ -22,6 +22,9 @@
         <AssociationConnector Association="tuulariModel.FK_Location_Event" ManuallyRouted="false" />
         <AssociationConnector Association="tuulariModel.FK_UserData_User" ManuallyRouted="false" />
         <AssociationConnector Association="tuulariModel.FK_Announcement_User1" />
+        <EntityTypeShape EntityType="tuulariModel.AuthToken" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="tuulariModel.FK_Attendance_User1" />
+        <AssociationConnector Association="tuulariModel.PK_AuthToken_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

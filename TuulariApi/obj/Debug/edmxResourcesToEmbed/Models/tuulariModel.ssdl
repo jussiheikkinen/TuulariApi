@@ -25,6 +25,15 @@
     <Property Name="AnnouncementId" Type="int" Nullable="false" />
     <Property Name="CreateTime" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="AuthToken">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="GenerationTime" Type="datetime" Nullable="false" />
+    <Property Name="Token" Type="nvarchar" MaxLength="56" Nullable="false" />
+  </EntityType>
   <EntityType Name="Comment">
     <Key>
       <PropertyRef Name="Id" />
@@ -106,13 +115,15 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Attendance_User">
-    <End Role="Attendance" Type="Self.Attendance" Multiplicity="1" />
-    <End Role="Attendance1" Type="Self.Attendance" Multiplicity="*" />
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Attendance">
+      <Principal Role="User">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Attendance1">
+      <Dependent Role="Attendance">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
@@ -193,9 +204,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="PK_AuthToken_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AuthToken" Type="Self.AuthToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AuthToken">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="tuulariModelStoreContainer">
     <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AuthToken" EntityType="Self.AuthToken" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
@@ -210,8 +236,8 @@
       <End Role="Attendance" EntitySet="Attendance" />
     </AssociationSet>
     <AssociationSet Name="FK_Attendance_User" Association="Self.FK_Attendance_User">
+      <End Role="User" EntitySet="User" />
       <End Role="Attendance" EntitySet="Attendance" />
-      <End Role="Attendance1" EntitySet="Attendance" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_Announcement" Association="Self.FK_Comment_Announcement">
       <End Role="Announcement" EntitySet="Announcement" />
@@ -236,6 +262,10 @@
     <AssociationSet Name="FK_UserData_User" Association="Self.FK_UserData_User">
       <End Role="User" EntitySet="User" />
       <End Role="UserData" EntitySet="UserData" />
+    </AssociationSet>
+    <AssociationSet Name="PK_AuthToken_User" Association="Self.PK_AuthToken_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="AuthToken" EntitySet="AuthToken" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

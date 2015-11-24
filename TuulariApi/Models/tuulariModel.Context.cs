@@ -32,5 +32,6 @@ namespace TuulariApi.Models
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserData> UserDatas { get; set; }
+        public virtual DbSet<AuthToken> AuthTokens { get; set; }
     }
 }

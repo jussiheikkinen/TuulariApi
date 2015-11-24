@@ -20,7 +20,6 @@ namespace TuulariApi.Controllers
         // GET: api/Users
         public IQueryable<User> GetUsers()
         {
-
             return db.Users;
         }
 
