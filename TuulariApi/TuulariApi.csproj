@@ -132,6 +132,7 @@
     <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\AuthTokensController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\EndpointController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\UserDatasController.cs" />

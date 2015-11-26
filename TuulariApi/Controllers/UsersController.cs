@@ -32,7 +32,21 @@ namespace TuulariApi.Controllers
             {
                 return NotFound();
             }
+            return Ok(user);
+        }
 
+        [ResponseType(typeof(User))]
+        [Route("api/kakkaa")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUser(int id)
+        {
+            //User user = await db.Users.FindAsync(id);            
+            var user = from c in db.Users where (c.Id == id) select c.Nickname;
+            
+            if (user == null)
+            {
+                return NotFound();
+            }
             return Ok(user);
         }
 
