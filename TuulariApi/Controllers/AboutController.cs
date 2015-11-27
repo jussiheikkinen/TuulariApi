@@ -53,6 +53,7 @@ namespace TuulariApi.Controllers
             IApiExplorer apiExplorer = new ApiExplorer(config);//config.Services.GetApiExplorer();
 
             Endpoint[] data = { };
+            int i = 0;
 
             foreach (ApiDescription api in apiExplorer.ApiDescriptions)
             {
@@ -65,6 +66,9 @@ namespace TuulariApi.Controllers
                         e.Parameters.Add(new EndpointParam { Name = parameter.Name, Source = parameter.Source });
                     }
                 }
+                
+                data[i] = e;
+                i++;
             }
 
             return data;
