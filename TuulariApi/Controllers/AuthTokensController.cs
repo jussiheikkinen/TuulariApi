@@ -17,7 +17,7 @@ namespace TuulariApi.Controllers
     {
         private tuulariEntities db = new tuulariEntities();
 
-        // GET: api/AuthTokens
+        /*// GET: api/AuthTokens
         public IQueryable<AuthToken> GetAuthTokens()
         {
             return db.AuthTokens;
@@ -109,7 +109,7 @@ namespace TuulariApi.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }*/
 
         private bool AuthTokenExists(int id)
         {
