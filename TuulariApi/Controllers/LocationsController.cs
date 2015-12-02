@@ -13,6 +13,7 @@ using TuulariApi.Models;
 
 namespace TuulariApi.Controllers
 {
+    [ApiAuthorization]
     public class LocationsController : ApiController
     {
         private tuulariEntities db = new tuulariEntities();
