@@ -38,7 +38,7 @@ namespace TuulariApi.Controllers
         public IEnumerable<Author> Authors()
         {
 
-            Author[] data = { new Author { Name="Niko Jokipalo", Email="h3136@student.labranet.jamk.fi" }, new Author { Name="Jussi Heikkinen", Email="h....@student.labranet.jamk.fi" } };
+            Author[] data = { new Author { Name="Niko Jokipalo", Email="h3136@student.labranet.jamk.fi" }, new Author { Name="Jussi Heikkinen", Email="h4214@student.labranet.jamk.fi" } };
             return data;
 
         }
