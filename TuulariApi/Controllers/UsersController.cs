@@ -36,12 +36,12 @@ namespace TuulariApi.Controllers
         }
 
         [ResponseType(typeof(User))]
-        [Route("api/kakkaa")]
+        [Route("api/UserEmail")]
         [HttpGet]
-        public async Task<IHttpActionResult> GetUser(int id)
+        public async Task<IHttpActionResult> GetUser(string x)
         {
             //User user = await db.Users.FindAsync(id);            
-            var user = from c in db.Users where (c.Id == id) select c.Nickname;
+            var user = from c in db.Users where (c.Email == x) select c.Nickname;
             
             if (user == null)
             {
